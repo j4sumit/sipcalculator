@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
+import './LumpSum.css'
 
 const LumpSum = () => {
   const [investment, setInvestment] = useState(500);
@@ -37,8 +38,8 @@ let estReturn = globalAmount-(investment*timePeriod*12);
     datasets: [
       {
         data: [investment, estReturn],
+        // backgroundColor: ['#98a4ff', '#5367ff'],
         backgroundColor: ['#98a4ff', '#5367ff'],
-        // hoverBackgroundColor: ['#98a4ff', '#5367ff'],
       },
     ],
   };
@@ -136,11 +137,12 @@ let estReturn = globalAmount-(investment*timePeriod*12);
           <Doughnut data={data} />
         </div>
       </div>
+{/* second div */}
       <div
         style={{
           marginTop: '20px',
           textAlign: 'left',
-          backgroundColor: '#e5faf5',
+          // backgroundColor: '#e5faf5',
           padding: '10px',
           borderRadius: '5px',
         }}
@@ -152,21 +154,33 @@ let estReturn = globalAmount-(investment*timePeriod*12);
             alignItems: 'center',
           }}
         >
-          <div>
+          <div className='bottomCalc'>
             <div>
-              <label>Invested Amount: <span>{`₹ ${Math.round(investedamount)}` }</span></label>
-              
+              Invested Amount: <span>{`₹ ${Math.round(investedamount)}` }</span> 
             </div>
             <div>
-              <label>Est. Returns: <span>{`₹ ${Math.round(estReturn)}`}</span></label>
-              
+              Est. Returns: <span>{`₹ ${Math.round(estReturn)}`}</span>
             </div>
             <div>
-              <label>Total Value: <span>{`₹ ${Math.round(globalAmount)}`}</span></label>
-              
+              Total Value: <span>{`₹ ${Math.round(globalAmount)}`}</span>
             </div>
           </div>
-          <button>INVEST NOW</button>
+          <button style={{
+  background: "#00d09c",
+  color: "#fff",
+  textAlign: "center",
+  width: "auto",
+  height: "45px",
+
+  display: "inline-block",
+  fontWeight: "500",
+  borderRadius: "4px",
+  cursor: "pointer",
+  whiteSpace: "nowrap",
+  position: "relative",
+  border: 'none',
+}}>INVEST NOW</button>
+
         </div>
       </div>
     </div>

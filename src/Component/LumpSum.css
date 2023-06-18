@@ -55,3 +55,15 @@
 button {
   margin-top: 10px;
 }
+
+.bottomCalc{
+  line-height: 2;
+  padding: 10px 0;
+  width:60%;
+  /* background-color: rgb(214, 255, 206)!important; */
+}
+
+.bottomCalc span{
+    float: right;
+
+}
