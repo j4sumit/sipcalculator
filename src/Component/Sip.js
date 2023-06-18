@@ -21,13 +21,8 @@ const Sip = () => {
   const calculateEstReturns = () => {
     const monthlyRate = returnRate / 12 / 100;
     const numPayments = timePeriod * 12;
-
-    const amount =
-      investment *
-      ((Math.pow(1 + monthlyRate, numPayments) - 1) / monthlyRate) *
-      (1 + monthlyRate);
-
-    return amount.toFixed(2);
+    const amount = investment* (Math.pow((1 + monthlyRate, numPayments)-1)/monthlyRate)*(1+monthlyRate);
+    return amount;
   };
 
   const data = {
@@ -36,7 +31,7 @@ const Sip = () => {
       {
         data: [investment, calculateEstReturns()],
         backgroundColor: ['#98a4ff', '#5367ff'],
-        hoverBackgroundColor: ['#98a4ff', '#5367ff'],
+        // hoverBackgroundColor: ['#98a4ff', '#5367ff'],
       },
     ],
   };
