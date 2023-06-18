@@ -16,7 +16,7 @@ export default function Calculator() {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Box sx={{ width: '600px', border: '1px solid #ccc', borderRadius: '8px', padding: '20px' }}>
+      <Box sx={{ width: '700px', border: '1px solid #ccc', borderRadius: '8px', padding: '20px' }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">

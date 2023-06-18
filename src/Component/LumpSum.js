@@ -17,24 +17,32 @@ const LumpSum = () => {
   const handleTimePeriodChange = (e) => {
     setTimePeriod(e.target.value);
   };
+  let globalAmount;
 
   const calculateEstReturns = () => {
     const monthlyRate = returnRate / 12 / 100;
     const numPayments = timePeriod * 12;
-    const amount = investment* (Math.pow((1 + monthlyRate, numPayments)-1)/monthlyRate)*(1+monthlyRate);
+    const amount = investment * (Math.pow(1 + monthlyRate, numPayments) - 1) / monthlyRate * (1 + monthlyRate);
     return amount;
   };
+  
+  // Call the function and assign the returned value to the global variable
+  globalAmount = calculateEstReturns();
 
+
+let investedamount = investment*timePeriod*12;
+let estReturn = globalAmount-(investment*timePeriod*12);
   const data = {
     labels: ['Investment Amount', 'Est Returns'],
     datasets: [
       {
-        data: [investment, calculateEstReturns()],
+        data: [investment, estReturn],
         backgroundColor: ['#98a4ff', '#5367ff'],
         // hoverBackgroundColor: ['#98a4ff', '#5367ff'],
       },
     ],
   };
+
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -146,15 +154,15 @@ const LumpSum = () => {
         >
           <div>
             <div>
-              <label>Invested Amount: <span>₹ 0</span></label>
+              <label>Invested Amount: <span>{`₹ ${Math.round(investedamount)}` }</span></label>
               
             </div>
             <div>
-              <label>Est. Returns: <span>₹ 0</span></label>
+              <label>Est. Returns: <span>{`₹ ${Math.round(estReturn)}`}</span></label>
               
             </div>
             <div>
-              <label>Total Value: <span>₹ 0</span></label>
+              <label>Total Value: <span>{`₹ ${Math.round(globalAmount)}`}</span></label>
               
             </div>
           </div>
