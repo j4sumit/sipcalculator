@@ -5,7 +5,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Sip from './Sip';
-import LumpSum from './LumpSum';
+import LumpSum from './LumpSum.js';
 
 export default function Calculator() {
   const [value, setValue] = useState('1');
