@@ -11,6 +11,10 @@ const Sip = () => {
     if (e.target.value > 100000) {
       return;
     }
+    if(e.target.value===0)
+    {
+      setInvestment(500);
+    }
     setInvestment(e.target.value);
   };
 
@@ -50,9 +54,10 @@ const Sip = () => {
     return amount;
   };
 
-  const globalAmount = calculateEstReturns();
-  const investedamount = investment * timePeriod * 12;
-  const estReturn = globalAmount - investedamount;
+
+  let globalAmount = calculateEstReturns();
+  let investedamount = investment * timePeriod * 12;
+  let estReturn = globalAmount - investedamount;
 
   const data = {
     labels: ["Investment Amount", "Est Returns"],
