@@ -8,28 +8,37 @@ const LumpSum = () => {
   const [timePeriod, setTimePeriod] = useState(10);
 
   const texthandleInvestmentChange = (e) => {
+    if (e.target.value > 100000) {
+      return;
+    }
     setInvestment(e.target.value);
   };
+
   const rangehandleInvestmentChange = (event) => {
     setInvestment(event.target.value);
   };
 
   const texthandleReturnRateChange = (e) => {
+    if (e.target.value > 30) {
+      return;
+    }
     setReturnRate(e.target.value);
   };
+
   const rangehandleReturnRateChange = (e) => {
     setReturnRate(e.target.value);
   };
 
   const texthandleTimePeriodChange = (e) => {
+    if (e.target.value > 40) {
+      return;
+    }
     setTimePeriod(e.target.value);
   };
+
   const rangehandleTimePeriodChange = (e) => {
     setTimePeriod(e.target.value);
   };
-
-
-  let globalAmount;
 
   const calculateEstReturns = () => {
     const monthlyRate = returnRate / 12 / 100;
@@ -41,20 +50,28 @@ const LumpSum = () => {
     return amount;
   };
 
-  // Call the function and assign the returned value to the global variable
-  globalAmount = calculateEstReturns();
+  const globalAmount = calculateEstReturns();
+  const investedamount = investment * timePeriod * 12;
+  const estReturn = globalAmount - investedamount;
 
-  let investedamount = investment * timePeriod * 12;
-  let estReturn = globalAmount - investment * timePeriod * 12;
   const data = {
     labels: ["Investment Amount", "Est Returns"],
     datasets: [
       {
-        data: [investment, estReturn],
-        // backgroundColor: ['#98a4ff', '#5367ff'],
+        data: [Math.round(investment), Math.round(estReturn)],
         backgroundColor: ["#98a4ff", "#5367ff"],
       },
     ],
+  };
+
+  const inputStyles = (value, min, max) => {
+    if (value < min || value > max) {
+      return {
+        color: "#eb5b3c",
+        backgroundColor: "#fae9e5",
+      };
+    }
+    return {};
   };
 
   return (
@@ -73,22 +90,32 @@ const LumpSum = () => {
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Monthly investment
             </label>
-            <input
-              type="text"
-              value={`\u20B9 ${investment}`}
-              min="-Infinity"
-              max="100000"
-              placeholder="0"
-              onChange={texthandleInvestmentChange} 
+            <div
               style={{
-                width: "100px",
+                display: "flex",
+                justifyContent: "space-between",
+                width: "150px",
                 backgroundColor: "#e5faf5",
                 color: "#66e3c4",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
+                ...inputStyles(investment, 500, 100000),
               }}
-            />
+            >
+              <span>₹</span>
+              <input
+                type="number"
+                value={investment}
+                min="500"
+                max="100000"
+                style={{
+                  color: inputStyles(investment, 500, 100000).color,
+                }}
+                placeholder="0"
+                onChange={texthandleInvestmentChange}
+              />
+            </div>
           </div>
           <input
             type="range"
@@ -101,22 +128,32 @@ const LumpSum = () => {
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Expected return rate (p.a)
             </label>
-            <input
-              type="text"
-              value={`${returnRate}\u0025`}
-              onChange={texthandleReturnRateChange}
-              min="1"
-              max="30"
-              placeholder="0"
+            <div
               style={{
-                width: "100px",
+                display: "flex",
+                justifyContent: "space-between",
+                width: "150px",
                 backgroundColor: "#e5faf5",
                 color: "#66e3c4",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
+                ...inputStyles(returnRate, 1, 30),
               }}
-            />
+            >
+              <input
+                type="number"
+                value={returnRate}
+                min="1"
+                max="30"
+                style={{
+                  color: inputStyles(returnRate, 1, 30).color,
+                }}
+                placeholder="0"
+                onChange={texthandleReturnRateChange}
+              />
+              <span>%</span>
+            </div>
           </div>
           <input
             type="range"
@@ -129,22 +166,32 @@ const LumpSum = () => {
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Time Period
             </label>
-            <input
-              type="text"
-              value={`${timePeriod} Yr`}
-              min="1"
-            max="40"
-            placeholder="0"
-              onChange={texthandleTimePeriodChange}
+            <div
               style={{
-                width: "100px",
+                display: "flex",
+                justifyContent: "space-between",
+                width: "150px",
                 backgroundColor: "#e5faf5",
                 color: "#66e3c4",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
+                ...inputStyles(timePeriod, 1, 40),
               }}
-            />
+            >
+              <input
+                type="number"
+                value={timePeriod}
+                min="1"
+                max="40"
+                style={{
+                  color: inputStyles(timePeriod, 1, 40).color,
+                }}
+                placeholder="0"
+                onChange={texthandleTimePeriodChange}
+              />
+              <span>Yr</span>
+            </div>
           </div>
           <input
             type="range"
@@ -163,7 +210,6 @@ const LumpSum = () => {
         style={{
           marginTop: "20px",
           textAlign: "left",
-          // backgroundColor: '#e5faf5',
           padding: "10px",
           borderRadius: "5px",
         }}
@@ -177,7 +223,8 @@ const LumpSum = () => {
         >
           <div className="bottomCalc">
             <div>
-              Invested Amount: <span>{`₹ ${Math.round(investedamount)}`}</span>
+              Invested Amount:{" "}
+              <span>{`₹ ${Math.round(investedamount)}`}</span>
             </div>
             <div>
               Est. Returns: <span>{`₹ ${Math.round(estReturn)}`}</span>
@@ -193,7 +240,6 @@ const LumpSum = () => {
               textAlign: "center",
               width: "auto",
               height: "45px",
-
               display: "inline-block",
               fontWeight: "500",
               borderRadius: "4px",

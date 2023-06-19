@@ -1,58 +1,80 @@
-.sip-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .row {
-    display: flex;
-  }
-  
-  .left-column {
-    flex: 0 0 60%;
-    margin-right: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .input-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .input-container label {
-    margin-right: 10px;
-    text-align: left;
-  }
-  
-  .input-container input[type="text"] {
-    width: 100px;
-    background-color: #e5faf5;
-    color: #66e3c4;
-    text-align: right;
-    padding-right: 5px;
-    border: none;
-  }
-  
-  .right-column {
-    flex: 0 0 40%;
-  }
-  
-  .result-container {
-    margin-top: 20px;
-    text-align: left;
-    background-color: #e5faf5;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .result-container .result-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  button {
-    margin-top: 10px;
-  }
-  
+.Sip-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+.left-column {
+  flex: 0 0 60%;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-container label {
+  margin-right: 10px;
+  text-align: left;
+}
+
+.input-text {
+  width: 100px;
+  background-color: #e5faf5;
+  color: #66e3c4;
+  text-align: right;
+  padding-right: 5px;
+  border: none;
+}
+
+.right-column {
+  flex: 0 0 40%;
+}
+
+.result-container {
+  margin-top: 20px;
+  text-align: left;
+  background-color: #e5faf5;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.result-container .result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.bottomCalc{
+  line-height: 2;
+  padding: 10px 0;
+  width:60%;
+  /* background-color: rgb(214, 255, 206)!important; */
+}
+
+.bottomCalc span{
+    float: right;
+}
+input{
+background: transparent;
+outline: none;
+border:none;
+text-align: right;
+width: 130px;
+color: #66e3c4;
+border-radius: 2px;
+}
+input::placeholder{
+  color: #66e3c4;
+}

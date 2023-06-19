@@ -28,7 +28,6 @@ const Sip = () => {
     setTimePeriod(e.target.value);
   };
 
-
   let globalAmount;
 
   const calculateEstReturns = () => {
@@ -73,22 +72,28 @@ const Sip = () => {
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Monthly investment
             </label>
-            <input
-              type="text"
-              value={`\u20B9 ${investment}`}
-              min="-Infinity"
-              max="100000"
-              placeholder="0"
-              onChange={texthandleInvestmentChange} 
+            <div
               style={{
-                width: "100px",
+                display: "flex",
+                justifyContent: "space-between",
+                width: "150px",
                 backgroundColor: "#e5faf5",
                 color: "#66e3c4",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
               }}
-            />
+            >
+              <span>₹</span>
+              <input
+                type="text"
+                value={investment}
+                min="-Infinity"
+                max="100000"
+                placeholder="0"
+                onChange={texthandleInvestmentChange}
+              />
+            </div>
           </div>
           <input
             type="range"
@@ -101,22 +106,28 @@ const Sip = () => {
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Expected return rate (p.a)
             </label>
-            <input
-              type="text"
-              value={`${returnRate}\u0025`}
-              onChange={texthandleReturnRateChange}
-              min="1"
-              max="30"
-              placeholder="0"
+            <div
               style={{
-                width: "100px",
+                display: "flex",
+                justifyContent: "space-between",
+                width: "150px",
                 backgroundColor: "#e5faf5",
                 color: "#66e3c4",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
               }}
-            />
+            >
+              <input
+                type="text"
+                value={returnRate}
+                min="-Infinity"
+                max="100000"
+                placeholder="0"
+                onChange={texthandleReturnRateChange}
+              />
+              <span>%</span>
+            </div>
           </div>
           <input
             type="range"
@@ -129,22 +140,28 @@ const Sip = () => {
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Time Period
             </label>
-            <input
-              type="text"
-              value={`${timePeriod} Yr`}
-              min="1"
-            max="40"
-            placeholder="0"
-              onChange={texthandleTimePeriodChange}
+            <div
               style={{
-                width: "100px",
+                display: "flex",
+                justifyContent: "space-between",
+                width: "150px",
                 backgroundColor: "#e5faf5",
                 color: "#66e3c4",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
               }}
-            />
+            >
+              <input
+                type="text"
+                value={timePeriod}
+                min="-Infinity"
+                max="100000"
+                placeholder="0"
+                onChange={texthandleTimePeriodChange}
+              />
+              <span>Yr</span>
+            </div>
           </div>
           <input
             type="range"
