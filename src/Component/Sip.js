@@ -8,27 +8,37 @@ const Sip = () => {
   const [timePeriod, setTimePeriod] = useState(10);
 
   const texthandleInvestmentChange = (e) => {
+    if (e.target.value > 100000) {
+      return;
+    }
     setInvestment(e.target.value);
   };
+
   const rangehandleInvestmentChange = (event) => {
     setInvestment(event.target.value);
   };
 
   const texthandleReturnRateChange = (e) => {
+    if (e.target.value > 30) {
+      return;
+    }
     setReturnRate(e.target.value);
   };
+
   const rangehandleReturnRateChange = (e) => {
     setReturnRate(e.target.value);
   };
 
   const texthandleTimePeriodChange = (e) => {
-    setTimePeriod(e.target.value);
-  };
-  const rangehandleTimePeriodChange = (e) => {
+    if (e.target.value > 40) {
+      return;
+    }
     setTimePeriod(e.target.value);
   };
 
-  let globalAmount;
+  const rangehandleTimePeriodChange = (e) => {
+    setTimePeriod(e.target.value);
+  };
 
   const calculateEstReturns = () => {
     const monthlyRate = returnRate / 12 / 100;
@@ -40,20 +50,28 @@ const Sip = () => {
     return amount;
   };
 
-  // Call the function and assign the returned value to the global variable
-  globalAmount = calculateEstReturns();
+  const globalAmount = calculateEstReturns();
+  const investedamount = investment * timePeriod * 12;
+  const estReturn = globalAmount - investedamount;
 
-  let investedamount = investment * timePeriod * 12;
-  let estReturn = globalAmount - investment * timePeriod * 12;
   const data = {
     labels: ["Investment Amount", "Est Returns"],
     datasets: [
       {
-        data: [investment, estReturn],
-        // backgroundColor: ['#98a4ff', '#5367ff'],
+        data: [Math.round(investment), Math.round(estReturn)],
         backgroundColor: ["#98a4ff", "#5367ff"],
       },
     ],
+  };
+
+  const inputStyles = (value, min, max) => {
+    if (value < min || value > max) {
+      return {
+        color: "#eb5b3c",
+        backgroundColor: "#fae9e5",
+      };
+    }
+    return {};
   };
 
   return (
@@ -82,14 +100,18 @@ const Sip = () => {
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
+                ...inputStyles(investment, 500, 100000),
               }}
             >
               <span>₹</span>
               <input
-                type="text"
+                type="number"
                 value={investment}
-                min="-Infinity"
+                min="500"
                 max="100000"
+                style={{
+                  color: inputStyles(investment, 500, 100000).color,
+                }}
                 placeholder="0"
                 onChange={texthandleInvestmentChange}
               />
@@ -116,13 +138,17 @@ const Sip = () => {
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
+                ...inputStyles(returnRate, 1, 30),
               }}
             >
               <input
-                type="text"
+                type="number"
                 value={returnRate}
-                min="-Infinity"
-                max="100000"
+                min="1"
+                max="30"
+                style={{
+                  color: inputStyles(returnRate, 1, 30).color,
+                }}
                 placeholder="0"
                 onChange={texthandleReturnRateChange}
               />
@@ -150,13 +176,17 @@ const Sip = () => {
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
+                ...inputStyles(timePeriod, 1, 40),
               }}
             >
               <input
-                type="text"
+                type="number"
                 value={timePeriod}
-                min="-Infinity"
-                max="100000"
+                min="1"
+                max="40"
+                style={{
+                  color: inputStyles(timePeriod, 1, 40).color,
+                }}
                 placeholder="0"
                 onChange={texthandleTimePeriodChange}
               />
@@ -180,7 +210,6 @@ const Sip = () => {
         style={{
           marginTop: "20px",
           textAlign: "left",
-          // backgroundColor: '#e5faf5',
           padding: "10px",
           borderRadius: "5px",
         }}
@@ -194,7 +223,8 @@ const Sip = () => {
         >
           <div className="bottomCalc">
             <div>
-              Invested Amount: <span>{`₹ ${Math.round(investedamount)}`}</span>
+              Invested Amount:{" "}
+              <span>{`₹ ${Math.round(investedamount)}`}</span>
             </div>
             <div>
               Est. Returns: <span>{`₹ ${Math.round(estReturn)}`}</span>
@@ -210,7 +240,6 @@ const Sip = () => {
               textAlign: "center",
               width: "auto",
               height: "45px",
-
               display: "inline-block",
               fontWeight: "500",
               borderRadius: "4px",

@@ -78,3 +78,13 @@ border-radius: 2px;
 input::placeholder{
   color: #66e3c4;
 }
+
+/* For hiding inputbox arrow */
+input::-webkit-outer-spin-button, 
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
