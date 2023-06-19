@@ -92,3 +92,67 @@ input[type=number] {
 input[type=range]{
   width: 100%;
 }
+
+.main-div{
+ display: flex;
+  flex-direction:column;
+}
+
+.left-div{
+  flex: 0 0 60%;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left-1std{
+  display: flex; 
+  align-items:center;
+  justify-content:space-between;
+}
+
+label{
+  margin-right: 10px;
+  text-align: lef;
+}
+.span-text{
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  background-color: #e5faf5;
+  color: #00d09c;
+  text-align: right;
+  padding-right: 5px;
+  border: none;
+}
+.input-range{
+  appearance: none;
+  height: 5px;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.range-slider{
+  appearance: none;
+  height: 5px;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button{
+  background: #00d09c;
+  color: #fff;
+  text-align: center;
+  width: auto;
+  height: 45px;
+  display: inline-block;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  border: none;
+}

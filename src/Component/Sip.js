@@ -75,41 +75,20 @@ const Sip = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className="main-div">
       <div style={{ display: "flex" }}>
-        <div
-          style={{
-            flex: "0 0 60%",
-            marginRight: "20px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
-            <label style={{ marginRight: "10px", textAlign: "left" }}>
-              Monthly investment
-            </label>
+        <div className="left-div">
+          <div className="left-1std">
+            <label>Monthly investment</label>
             <div
+              className="span-text"
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "150px",
-                backgroundColor: "#e5faf5",
-                color: "#00d09c",
-                textAlign: "right",
-                paddingRight: "5px",
-                border: "none",
                 ...inputStyles(investment, 500, 100000),
               }}
             >
               <span>₹</span>
-              <input
-                type="number"
-                value={investment}
-                min="500"
-                max="100000"
-                style={{
+              <input type="number" value={investment} min="500" max="100000"
+               style={{
                   color: inputStyles(investment, 500, 100000).color,
                 }}
                 placeholder="0"
@@ -118,42 +97,31 @@ const Sip = () => {
             </div>
           </div>
           <input
-            type="range"
-            min="500"
-            max="100000"
-            value={investment}
+            className="range-slider" type="range" min="500" max="100000" value={investment}
             onChange={rangehandleInvestmentChange}
-           style={{
-              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((investment - 500) / (100000 - 500)) * 100}%, #ecedef ${((investment - 500) / (100000 - 500)) * 100}%, #ecedef 100%)`,
-              appearance: "none",
-              height: "5px",
-              outline: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
+            style={{
+              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${
+                ((investment - 500) / (100000 - 500)) * 100
+              }%, #ecedef ${
+                ((investment - 500) / (100000 - 500)) * 100
+              }%, #ecedef 100%)`,
             }}
           />
-          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
-            <label style={{ marginRight: "10px", textAlign: "left" }}>
-              Expected return rate (p.a)
-            </label>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <label>Expected return rate (p.a)</label>
             <div
+              className="span-text"
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "150px",
-                backgroundColor: "#e5faf5",
-                color: "#00d09c",
-                textAlign: "right",
-                paddingRight: "5px",
-                border: "none",
                 ...inputStyles(returnRate, 1, 30),
               }}
             >
-              <input
-                type="number"
-                value={returnRate}
-                min="1"
-                max="30"
+              <input type="number" value={returnRate} min="1" max="30"
                 style={{
                   color: inputStyles(returnRate, 1, 30).color,
                 }}
@@ -163,69 +131,45 @@ const Sip = () => {
               <span>%</span>
             </div>
           </div>
-          <input
-            type="range"
-            min="1"
-            max="30"
-            value={returnRate}
+          <input className="range-slider" type="range" min="1" max="30" value={returnRate}
             onChange={rangehandleReturnRateChange}
             style={{
-              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((returnRate - 1) / (30 - 1)) * 100}%, #ecedef ${((returnRate - 1) / (30 - 1)) * 100}%, #ecedef 100%)`,
-              appearance: "none",
-              height: "5px",
-              outline: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
+              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${
+                ((returnRate - 1) / (30 - 1)) * 100
+              }%, #ecedef ${
+                ((returnRate - 1) / (30 - 1)) * 100
+              }%, #ecedef 100%)`,
             }}
-
           />
-          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between"  }}>
+          <div className="left-1std">
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Time Period
             </label>
             <div
+              className="span-text"
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "150px",
-                backgroundColor: "#e5faf5",
-                color: "#00d09c",
-                textAlign: "right",
-                paddingRight: "5px",
-                border: "none",
                 ...inputStyles(timePeriod, 1, 40),
               }}
             >
-              <input
-                type="number"
-                value={timePeriod}
-                min="1"
-                max="40"
+              <input type="number" value={timePeriod} min="1" max="40" placeholder="0"
                 style={{
                   color: inputStyles(timePeriod, 1, 40).color,
                 }}
-                placeholder="0"
                 onChange={texthandleTimePeriodChange}
               />
               <span>Yr</span>
             </div>
           </div>
           <input
-            type="range"
-            min="1"
-            max="40"
-            value={timePeriod}
+            className="range-slider" type="range" min="1" max="40" value={timePeriod}
             onChange={rangehandleTimePeriodChange}
             style={{
-              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((timePeriod - 1) / (40 - 1)) * 100}%, #ecedef ${((timePeriod -1) / (40 - 1)) * 100}%, #ecedef 100%)`,
-              appearance: "none",
-              height: "5px",
-              outline: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
+              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${
+                ((timePeriod - 1) / (40 - 1)) * 100
+              }%, #ecedef ${
+                ((timePeriod - 1) / (40 - 1)) * 100
+              }%, #ecedef 100%)`,
             }}
-
-
           />
         </div>
         <div style={{ flex: "0 0 40%" }}>
@@ -250,8 +194,7 @@ const Sip = () => {
         >
           <div className="bottomCalc">
             <div>
-              Invested Amount:{" "}
-              <span>{`₹ ${Math.round(investedamount)}`}</span>
+              Invested Amount: <span>{`₹ ${Math.round(investedamount)}`}</span>
             </div>
             <div>
               Est. Returns: <span>{`₹ ${Math.round(estReturn)}`}</span>
@@ -260,24 +203,7 @@ const Sip = () => {
               Total Value: <span>{`₹ ${Math.round(globalAmount)}`}</span>
             </div>
           </div>
-          <button
-            style={{
-              background: "#00d09c",
-              color: "#fff",
-              textAlign: "center",
-              width: "auto",
-              height: "45px",
-              display: "inline-block",
-              fontWeight: "500",
-              borderRadius: "4px",
-              cursor: "pointer",
-              whiteSpace: "nowrap",
-              position: "relative",
-              border: "none",
-            }}
-          >
-            INVEST NOW
-          </button>
+          <button>INVEST NOW</button>
         </div>
       </div>
     </div>
