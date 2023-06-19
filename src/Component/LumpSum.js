@@ -96,7 +96,7 @@ const LumpSum = () => {
                 justifyContent: "space-between",
                 width: "150px",
                 backgroundColor: "#e5faf5",
-                color: "#66e3c4",
+                color: "#00d09c",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
@@ -123,6 +123,14 @@ const LumpSum = () => {
             max="100000"
             value={investment}
             onChange={rangehandleInvestmentChange}
+           style={{
+              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((investment - 500) / (100000 - 500)) * 100}%, #ecedef ${((investment - 500) / (100000 - 500)) * 100}%, #ecedef 100%)`,
+              appearance: "none",
+              height: "5px",
+              outline: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
           />
           <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
@@ -134,7 +142,7 @@ const LumpSum = () => {
                 justifyContent: "space-between",
                 width: "150px",
                 backgroundColor: "#e5faf5",
-                color: "#66e3c4",
+                color: "#00d09c",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
@@ -161,6 +169,15 @@ const LumpSum = () => {
             max="30"
             value={returnRate}
             onChange={rangehandleReturnRateChange}
+            style={{
+              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((returnRate - 1) / (30 - 1)) * 100}%, #ecedef ${((returnRate - 1) / (30 - 1)) * 100}%, #ecedef 100%)`,
+              appearance: "none",
+              height: "5px",
+              outline: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+
           />
           <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between"  }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
@@ -172,7 +189,7 @@ const LumpSum = () => {
                 justifyContent: "space-between",
                 width: "150px",
                 backgroundColor: "#e5faf5",
-                color: "#66e3c4",
+                color: "#00d09c",
                 textAlign: "right",
                 paddingRight: "5px",
                 border: "none",
@@ -199,6 +216,16 @@ const LumpSum = () => {
             max="40"
             value={timePeriod}
             onChange={rangehandleTimePeriodChange}
+            style={{
+              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((timePeriod - 1) / (40 - 1)) * 100}%, #ecedef ${((timePeriod -1) / (40 - 1)) * 100}%, #ecedef 100%)`,
+              appearance: "none",
+              height: "5px",
+              outline: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+
+
           />
         </div>
         <div style={{ flex: "0 0 40%" }}>
