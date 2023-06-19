@@ -86,7 +86,7 @@ const Sip = () => {
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Monthly investment
             </label>
@@ -124,7 +124,7 @@ const Sip = () => {
             value={investment}
             onChange={rangehandleInvestmentChange}
           />
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Expected return rate (p.a)
             </label>
@@ -162,7 +162,7 @@ const Sip = () => {
             value={returnRate}
             onChange={rangehandleReturnRateChange}
           />
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between"  }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Time Period
             </label>
