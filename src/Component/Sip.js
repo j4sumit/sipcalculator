@@ -3,21 +3,32 @@ import { Doughnut } from "react-chartjs-2";
 import "./Sip.css";
 
 const Sip = () => {
-  const [investment, setInvestment] = useState(500);
-  const [returnRate, setReturnRate] = useState(1);
-  const [timePeriod, setTimePeriod] = useState(1);
+  const [investment, setInvestment] = useState(2500);
+  const [returnRate, setReturnRate] = useState(12);
+  const [timePeriod, setTimePeriod] = useState(10);
 
-  const handleInvestmentChange = (e) => {
+  const texthandleInvestmentChange = (e) => {
     setInvestment(e.target.value);
   };
+  const rangehandleInvestmentChange = (event) => {
+    setInvestment(event.target.value);
+  };
 
-  const handleReturnRateChange = (e) => {
+  const texthandleReturnRateChange = (e) => {
+    setReturnRate(e.target.value);
+  };
+  const rangehandleReturnRateChange = (e) => {
     setReturnRate(e.target.value);
   };
 
-  const handleTimePeriodChange = (e) => {
+  const texthandleTimePeriodChange = (e) => {
     setTimePeriod(e.target.value);
   };
+  const rangehandleTimePeriodChange = (e) => {
+    setTimePeriod(e.target.value);
+  };
+
+
   let globalAmount;
 
   const calculateEstReturns = () => {
@@ -64,8 +75,11 @@ const Sip = () => {
             </label>
             <input
               type="text"
-              value={`₹ ${investment}`}
-              readOnly
+              value={`\u20B9 ${investment}`}
+              min="-Infinity"
+              max="100000"
+              placeholder="0"
+              onChange={texthandleInvestmentChange} 
               style={{
                 width: "100px",
                 backgroundColor: "#e5faf5",
@@ -81,7 +95,7 @@ const Sip = () => {
             min="500"
             max="100000"
             value={investment}
-            onChange={handleInvestmentChange}
+            onChange={rangehandleInvestmentChange}
           />
           <div style={{ display: "flex", alignItems: "center" }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
@@ -89,8 +103,11 @@ const Sip = () => {
             </label>
             <input
               type="text"
-              value={`${returnRate}%`}
-              readOnly
+              value={`${returnRate}\u0025`}
+              onChange={texthandleReturnRateChange}
+              min="1"
+              max="30"
+              placeholder="0"
               style={{
                 width: "100px",
                 backgroundColor: "#e5faf5",
@@ -106,7 +123,7 @@ const Sip = () => {
             min="1"
             max="30"
             value={returnRate}
-            onChange={handleReturnRateChange}
+            onChange={rangehandleReturnRateChange}
           />
           <div style={{ display: "flex", alignItems: "center" }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
@@ -115,7 +132,10 @@ const Sip = () => {
             <input
               type="text"
               value={`${timePeriod} Yr`}
-              readOnly
+              min="1"
+            max="40"
+            placeholder="0"
+              onChange={texthandleTimePeriodChange}
               style={{
                 width: "100px",
                 backgroundColor: "#e5faf5",
@@ -131,7 +151,7 @@ const Sip = () => {
             min="1"
             max="40"
             value={timePeriod}
-            onChange={handleTimePeriodChange}
+            onChange={rangehandleTimePeriodChange}
           />
         </div>
         <div style={{ flex: "0 0 40%" }}>

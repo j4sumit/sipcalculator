@@ -6,7 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Sip from './Sip';
 import LumpSum from './LumpSum';
-import '../App.css';
+import '../App.css'
 
 
 export default function Calculator() {
