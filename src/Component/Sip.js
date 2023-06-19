@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import "./Sip.css";
+import "./Style.css";
 
 const Sip = () => {
   const [investment, setInvestment] = useState(2500);
