@@ -6,6 +6,7 @@ const LumpSum = () => {
   const [investment, setInvestment] = useState(2500);
   const [returnRate, setReturnRate] = useState(12);
   const [timePeriod, setTimePeriod] = useState(10);
+  // const [compoundedInterests, setCompoundedInterests] = useState(1);
 
   const texthandleInvestmentChange = (e) => {
     if (e.target.value > 100000) {
@@ -40,18 +41,21 @@ const LumpSum = () => {
     setTimePeriod(e.target.value);
   };
 
+  // const handleCompoundedInterestsChange = (e) => {
+  //   setCompoundedInterests(e.target.value);
+  // };
+
   const calculateEstReturns = () => {
-    const monthlyRate = returnRate / 12 / 100;
-    const numPayments = timePeriod * 12;
-    const amount =
-      ((investment * (Math.pow(1 + monthlyRate, numPayments) - 1)) /
-        monthlyRate) *
-      (1 + monthlyRate);
+    const compoundedInterests=1;
+    const n = compoundedInterests;
+    const t = timePeriod;
+    const r = returnRate / 100;
+    const amount = investment * Math.pow((1 + r / n), n * t);
     return amount;
   };
 
   const globalAmount = calculateEstReturns();
-  const investedamount = investment * timePeriod * 12;
+  const investedamount = investment;
   const estReturn = globalAmount - investedamount;
 
   const data = {
@@ -86,9 +90,9 @@ const LumpSum = () => {
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
-              Monthly investment
+              Total investment
             </label>
             <div
               style={{
@@ -104,15 +108,10 @@ const LumpSum = () => {
               }}
             >
               <span>₹</span>
-              <input
-                type="number"
-                value={investment}
-                min="500"
-                max="100000"
+              <input type="number" value={investment} min="500" max="100000" placeholder="0"
                 style={{
                   color: inputStyles(investment, 500, 100000).color,
                 }}
-                placeholder="0"
                 onChange={texthandleInvestmentChange}
               />
             </div>
@@ -123,7 +122,7 @@ const LumpSum = () => {
             max="100000"
             value={investment}
             onChange={rangehandleInvestmentChange}
-           style={{
+            style={{
               background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((investment - 500) / (100000 - 500)) * 100}%, #ecedef ${((investment - 500) / (100000 - 500)) * 100}%, #ecedef 100%)`,
               appearance: "none",
               height: "5px",
@@ -132,7 +131,7 @@ const LumpSum = () => {
               cursor: "pointer",
             }}
           />
-          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
               Expected return rate (p.a)
             </label>
@@ -150,24 +149,17 @@ const LumpSum = () => {
               }}
             >
               <input
-                type="number"
-                value={returnRate}
-                min="1"
-                max="30"
+                type="number" value={returnRate} min="1" max="30" placeholder="0"
                 style={{
                   color: inputStyles(returnRate, 1, 30).color,
                 }}
-                placeholder="0"
                 onChange={texthandleReturnRateChange}
               />
               <span>%</span>
             </div>
           </div>
           <input
-            type="range"
-            min="1"
-            max="30"
-            value={returnRate}
+            type="range" min="1" max="30" value={returnRate}
             onChange={rangehandleReturnRateChange}
             style={{
               background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((returnRate - 1) / (30 - 1)) * 100}%, #ecedef ${((returnRate - 1) / (30 - 1)) * 100}%, #ecedef 100%)`,
@@ -177,11 +169,10 @@ const LumpSum = () => {
               borderRadius: "5px",
               cursor: "pointer",
             }}
-
           />
-          <div style={{ display: "flex", alignItems: "center", justifyContent:"space-between"  }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <label style={{ marginRight: "10px", textAlign: "left" }}>
-              Time Period
+              Time period
             </label>
             <div
               style={{
@@ -196,36 +187,26 @@ const LumpSum = () => {
                 ...inputStyles(timePeriod, 1, 40),
               }}
             >
-              <input
-                type="number"
-                value={timePeriod}
-                min="1"
-                max="40"
+              <input type="number" value={timePeriod} min="1" max="40" placeholder="0"
                 style={{
                   color: inputStyles(timePeriod, 1, 40).color,
                 }}
-                placeholder="0"
                 onChange={texthandleTimePeriodChange}
               />
               <span>Yr</span>
             </div>
           </div>
           <input
-            type="range"
-            min="1"
-            max="40"
-            value={timePeriod}
+            type="range" min="1" max="40" value={timePeriod}
             onChange={rangehandleTimePeriodChange}
             style={{
-              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((timePeriod - 1) / (40 - 1)) * 100}%, #ecedef ${((timePeriod -1) / (40 - 1)) * 100}%, #ecedef 100%)`,
+              background: `linear-gradient(to right, #00d09c 0%, #00d09c ${((timePeriod - 1) / (40 - 1)) * 100}%, #ecedef ${((timePeriod - 1) / (40 - 1)) * 100}%, #ecedef 100%)`,
               appearance: "none",
               height: "5px",
               outline: "none",
               borderRadius: "5px",
               cursor: "pointer",
             }}
-
-
           />
         </div>
         <div style={{ flex: "0 0 40%" }}>
