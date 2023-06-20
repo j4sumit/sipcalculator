@@ -103,7 +103,7 @@ let  newinvestment = investment || 500;
             </div>
           </div>
           <input
-            className="range-slider" type="range" min="500" max="100000" value={investment}
+            className="range-slider" type="range" min="500" max="100000" value={investment||0}
             onChange={rangehandleInvestmentChange}
             style={{
               background: `linear-gradient(to right, #00d09c 0%, #00d09c ${
@@ -137,7 +137,7 @@ let  newinvestment = investment || 500;
               <span>%</span>
             </div>
           </div>
-          <input className="range-slider" type="range" min="1" max="30" value={returnRate}
+          <input className="range-slider" type="range" min="1" max="30" value={returnRate||0}
             onChange={rangehandleReturnRateChange}
             style={{
               background: `linear-gradient(to right, #00d09c 0%, #00d09c ${
@@ -167,7 +167,7 @@ let  newinvestment = investment || 500;
             </div>
           </div>
           <input
-            className="range-slider" type="range" min="1" max="40" value={timePeriod}
+            className="range-slider" type="range" min="1" max="40" value={timePeriod||0}
             onChange={rangehandleTimePeriodChange}
             style={{
               background: `linear-gradient(to right, #00d09c 0%, #00d09c ${
