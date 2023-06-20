@@ -40,17 +40,21 @@ const LumpSum = () => {
     setTimePeriod(e.target.value);
   };
 
+let  newreturnRate = returnRate || 1;
+let  newtimePeriod = timePeriod || 1;
+let  newinvestment = investment || 500;
+
   const calculateEstReturns = () => {
     const compoundedInterests=1;
     const n = compoundedInterests;
-    const t = timePeriod;
-    const r = returnRate / 100;
-    const amount = investment * Math.pow((1 + r / n), n * t);
+    const t = newtimePeriod;
+    const r = newreturnRate / 100;
+    const amount = newinvestment * Math.pow((1 + r / n), n * t);
     return amount;
   };
 
   const globalAmount = calculateEstReturns();
-  const investedamount = investment;
+  const investedamount = newinvestment;
   const estReturn = globalAmount - investedamount;
 
   const data = {

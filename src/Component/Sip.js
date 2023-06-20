@@ -11,10 +11,6 @@ const Sip = () => {
     if (e.target.value > 100000) {
       return;
     }
-    if(e.target.value===0)
-    {
-      setInvestment(500);
-    }
     setInvestment(e.target.value);
   };
 
@@ -38,17 +34,22 @@ const Sip = () => {
       return;
     }
     setTimePeriod(e.target.value);
+
   };
 
   const rangehandleTimePeriodChange = (e) => {
     setTimePeriod(e.target.value);
   };
 
+let  newreturnRate = returnRate || 1;
+let  newtimePeriod = timePeriod || 1;
+let  newinvestment = investment || 500;
+
   const calculateEstReturns = () => {
-    const monthlyRate = returnRate / 12 / 100;
-    const numPayments = timePeriod * 12;
+    const monthlyRate = newreturnRate / 12 / 100;
+    const numPayments = newtimePeriod * 12;
     const amount =
-      ((investment * (Math.pow(1 + monthlyRate, numPayments) - 1)) /
+      ((newinvestment * (Math.pow(1 + monthlyRate, numPayments) - 1)) /
         monthlyRate) *
       (1 + monthlyRate);
     return amount;
@@ -56,14 +57,14 @@ const Sip = () => {
 
 
   let globalAmount = calculateEstReturns();
-  let investedamount = investment * timePeriod * 12;
+  let investedamount = newinvestment * newtimePeriod * 12 ;
   let estReturn = globalAmount - investedamount;
 
   const data = {
     labels: ["Investment Amount", "Est Returns"],
     datasets: [
       {
-        data: [Math.round(investment), Math.round(estReturn)],
+        data: [Math.round(newinvestment), Math.round(estReturn)],
         backgroundColor: ["#98a4ff", "#5367ff"],
       },
     ],
